@@ -1,0 +1,54 @@
+<div *ngIf="!pais; else divPais" class="alert alert-info">
+    Espere por favor ...
+</div>
+
+<ng-template #divPais class="mt-2">
+    <div class="row">
+        <div class="col-12">
+            <h1>País: {{pais.name.common}}</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <h3>Bandera</h3>
+            <img [src]="pais.flags.png" [alt]="pais.name.common" class="img-thumbnail">
+        </div>
+        <div class="col">
+            <h3>Información</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Nombre completo:</strong> {{pais.altSpellings[2]}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Capital:</strong> {{pais.capital[0]}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Continente:</strong> {{pais.continents[0]}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Área:</strong> {{pais.area | number}} m2
+                </li>
+                <li class="list-group-item">
+                    <strong>Población:</strong> {{pais.population | number}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Fronteras:</strong> {{pais.borders}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Escudo:   </strong>  <img class="img-2" [src]="pais.coatOfArms.png" [alt]="pais.name.common">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <h3>Traducciones:</h3>
+            <span *ngFor="let t of pais.translations | keyvalue" class="badge bg-primary m-2">          
+                {{ t.value.common }}
+            </span>
+        </div>
+    </div>
+</ng-template>
+
